@@ -62,16 +62,21 @@ plt.show()
 
 # Stacked bar chart for 'Category' and 'Sub_Category'
 plt.figure(figsize=(12, 6))
-stacked_bar_chart = data.groupby(['Category', 'Sub_Category']).size().unstack().plot(kind='bar', stacked=True)
+stacked_bar_chart = data.groupby(['Category', 'Sub_Category']).size().plot(kind='bar', stacked=True)
 plt.title('Stacked Bar Chart - Category vs Sub-Category Counts')
 plt.xlabel('Category')
 plt.ylabel('Count')
-plt.xticks(rotation=45)
 plt.show()
 
-plt.figure(figsize=(10, 6))
-sns.barplot(data=data, x='Sales', y='Category', ci=None)
-plt.title('Sales by Category')
+
+# Histogram for 'Sales' with custom x and y axis limits
+plt.figure(figsize=(12, 6))
+histogram = sns.histplot(data['Sales'], bins=20, kde=True)
+plt.title('Histogram of Sales')
 plt.xlabel('Sales')
-plt.ylabel('Category')
+plt.ylabel('Frequency')
+plt.xlim(0, 4000)  # Set x-axis limits from 0 to 2000
+plt.ylim(0, 10000)  # Set y-axis limits from 0 to 1000
 plt.show()
+
+
